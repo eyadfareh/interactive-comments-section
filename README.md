@@ -1,6 +1,6 @@
 # Interactive comments section
 An interactive comments section using react, the updates are saved to localstorage
-this is a [Frontendmentor challenge](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9]
+this is a [Frontendmentor challenge](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9)
 
 ### Starting
 1. Download dependencies `npm install`

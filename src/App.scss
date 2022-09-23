@@ -1,41 +1,17 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+$mb: hsl(238, 40%, 52%);  // Moderate blue
+$sr: hsl(358, 79%, 66%);  // Soft Red 
+$lgb: hsl(239, 57%, 85%); // Light grayish blue
+$pr: hsl(357, 100%, 86%); // Pale red
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
+$db: hsl(212, 24%, 26%); // Dark Blue
+$gb: hsl(211, 10%, 45%); // Grayish Blue
+$lg: hsl(223, 19%, 93%); // Light gray	
+$vlg: hsl(228, 33%, 97%); // Very light gray
+$w: hsl(0, 0%, 100%); // White
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.comment{
+	display:flex;
+	.upvotes{
+		display:flex;
+	}
 }
