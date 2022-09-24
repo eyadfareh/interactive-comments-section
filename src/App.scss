@@ -15,10 +15,14 @@ $w: hsl(0, 0%, 100%); // White
 }
 body{
 	background-color:$vlg;
+	min-height: 5000px;
 }
 .App{
 	width:734px;
 	margin:auto;
+}
+.comments{
+	margin-bottom: 20px;
 }
 .comment{
 	display:flex;
@@ -124,5 +128,18 @@ body{
 				margin-right:25px;
 			}
 		}
+	}
+}
+.add-comment{
+	display: flex;
+	padding-left: 30px;
+	background-color: $w;
+	align-items: flex-start	;
+	img{
+		width: 40px;
+	}
+	textarea{
+		flex-grow: 1;
+		resize: none;
 	}
 }
