@@ -16,9 +16,13 @@ $w: hsl(0, 0%, 100%); // White
 body{
 	background-color:$vlg;
 }
+.App{
+	width:734px;
+	margin:auto;
+}
 .comment{
 	display:flex;
-	margin:10px; // TODO Remove for DEBUGGING
+	margin:10px; 
 	padding:10px 0;
 	background-color:$w;
 	border-radius:5px;	
@@ -59,12 +63,20 @@ body{
 					width:30px;
 					margin-right:10px;
 				}
-				span{
+				span.username{
 					margin-right:10px;
 					font-weight:500;
 					color:$db;
 				}
-				span:last-of-type{
+				span.you{
+					background-color:$mb;
+					margin-right:10px;
+					padding:2px 8px 4px;
+					border-radius:2px;
+					font-wight:bold;
+					color:$w;
+				}
+				span.date{
 					font-weight:400;
 					color: $gb;
 				}
@@ -79,12 +91,37 @@ body{
 				img{
 					margin-right:10px;
 				}
+				&.delete{
+					color: $sr;
+					margin-right:15px;
+				}
 			}
 		}
 		.comment-content{
+			span.tag{
+				color:$mb;
+				font-weight:500;
+			}
 			p{
 				color:$gb;
+				line-height:1.5;
 				font-size:16px;
+			}
+		}
+	}
+}
+.comment-container{
+	.replies-container{
+		display:flex;
+		
+		.line-container{
+			width:175px;
+			.line{
+				width:3px;
+				height:100%;
+				background-color:$lg;
+				float:right;
+				margin-right:25px;
 			}
 		}
 	}

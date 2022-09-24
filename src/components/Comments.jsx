@@ -9,8 +9,26 @@ export default function Comments(props){
           createdAt={comment.createdAt}
           score={comment.score}
           imageType={props.imageType}
+          currentUser={comment.user.username === props.currentUser.username}
+          image={comment.user.image}
           content={comment.content}
-        ></Comment>
+          commentType="comment"
+        >
+          {comment.replies.map(reply => (
+            <Comment
+              key={reply.id}
+              username={reply.user.username}
+              commentType="reply"
+              createdAt={reply.createdAt}
+              score={reply.score}
+              imageType={props.imageType}
+              replyingTo={reply.replyingTo}
+              currentUser={reply.user.username === props.currentUser.username}
+              image={reply.user.image}
+              content={reply.content}
+            ></Comment>
+          ))}
+        </Comment>
       ))}
     </div>
   )

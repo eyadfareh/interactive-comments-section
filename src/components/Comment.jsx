@@ -15,29 +15,61 @@ export default function Comment(props){
         <div className="comment-body">
           <div className="comment-header">
             <div>
-              <img src={`/images/avatars/image-maxblagun.${props.imageType}`} width="30" alt="Max Blagun" />
-              <span>{props.username}</span>
-              <span>{props.createdAt}</span>
+              <img src={props.image[props.imageType]} width="30" alt="Max Blagun" />
+              <span className="username">{props.username}</span>
+              {props.currentUser ? (
+                <span className="you">you</span>
+              ):""}
+              <span className="date">{props.createdAt}</span>
             </div>
             <div>
-              <button>
-                <img src="/images/icon-reply.svg" width="15" alt="Reply icon" />
-                Reply
-              </button>
+              {props.currentUser ? (
+                <>
+                  <button className="delete">
+                    <img src="/images/icon-delete.svg" width="15" alt="Reply icon" />
+                    Delete
+                  </button>
+                  <button>
+                    <img src="/images/icon-edit.svg" width="15" alt="Reply icon" />
+                    Edit
+                  </button>
+                </>
+              ) : (
+                <button>
+                  <img src="/images/icon-reply.svg" width="15" alt="Reply icon" />
+                  Reply
+                </button>
+              )}
             </div>
           </div>
           <div className="comment-content">
-            <p>{props.content}</p>
+            <p>
+              {props.replyingTo ? (
+                <span className="tag">@{props.replyingTo} </span>
+              ) : ""}
+              {props.content}
+            </p>
           </div>
         </div>
       </div>
   )
-  return (
-    <div className="comment-container"> 
-      {commentBody}
-      <div className="replies">
-        {props.children}
+  if(props.commentType == "comment"){
+    return (
+      <div className="comment-container"> 
+        {commentBody}
+        {props.children.length ? (
+          <div className="replies-container">
+            <div className="line-container">
+              <div className="line"></div>
+            </div>
+            <div className="replies">
+              {props.children}
+            </div>
+          </div>
+        ) : ""}
       </div>
-    </div>
-  )
+    )
+  }else if(props.commentType == "reply"){
+    return commentBody;
+  }
 }
