@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className="App">
-      <Comments data={comments} imageType={imageType}></Comments>
+      <Comments comments={comments.comments} currentUser={comments.currentUser} imageType={imageType}></Comments>
     </div>
   )
 }

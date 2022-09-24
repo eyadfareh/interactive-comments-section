@@ -8,10 +8,84 @@ $gb: hsl(211, 10%, 45%); // Grayish Blue
 $lg: hsl(223, 19%, 93%); // Light gray	
 $vlg: hsl(228, 33%, 97%); // Very light gray
 $w: hsl(0, 0%, 100%); // White
-
+@mixin reset-button{
+	background-color:transparent;
+	cursor:pointer;
+	border:none;
+}
+body{
+	background-color:$vlg;
+}
 .comment{
 	display:flex;
+	margin:10px; // TODO Remove for DEBUGGING
+	padding:10px 0;
+	background-color:$w;
+	border-radius:5px;	
 	.upvotes{
-		display:flex;
+		padding:0 20px;
+		> div{
+			background-color:$vlg;
+			padding:15px 10px;
+			border-radius:10px;
+			*{
+				display:block;
+			}
+			span{
+				margin: 15px 0;
+				font-weight:500;
+				text-align:center;
+				color:$mb;
+			}
+			button{
+				@include reset-button;
+				display:flex;
+
+				img{
+				}
+			}
+		}
+	}
+	.comment-body{
+		padding-right: 20px;
+		.comment-header{
+			display:flex;
+			align-items:center;
+			justify-content:space-between;
+			div{
+				display:flex;
+				align-items:center;
+				> img{
+					width:30px;
+					margin-right:10px;
+				}
+				span{
+					margin-right:10px;
+					font-weight:500;
+					color:$db;
+				}
+				span:last-of-type{
+					font-weight:400;
+					color: $gb;
+				}
+			}
+			button{
+				@include reset-button;
+				color:$mb;
+				display:flex;
+				align-items:center;
+				font-weight:500;
+				font-size:16px;
+				img{
+					margin-right:10px;
+				}
+			}
+		}
+		.comment-content{
+			p{
+				color:$gb;
+				font-size:16px;
+			}
+		}
 	}
 }
