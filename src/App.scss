@@ -2,6 +2,7 @@ $mb: hsl(238, 40%, 52%);  // Moderate blue
 $sr: hsl(358, 79%, 66%);  // Soft Red 
 $lgb: hsl(239, 57%, 85%); // Light grayish blue
 $pr: hsl(357, 100%, 86%); // Pale red
+$dmb: #C5C6EF; // Deactivated moderate blue
 
 $db: hsl(212, 24%, 26%); // Dark Blue
 $gb: hsl(211, 10%, 45%); // Grayish Blue
@@ -15,10 +16,14 @@ $w: hsl(0, 0%, 100%); // White
 }
 body{
 	background-color:$vlg;
+	min-height:3000px;
 }
 .App{
 	width:734px;
 	margin:auto;
+}
+.comments{
+	margin-bottom:20px;
 }
 .comment{
 	display:flex;
@@ -44,8 +49,9 @@ body{
 			button{
 				@include reset-button;
 				display:flex;
-
-				img{
+				color:$lgb;
+				&:hover{
+					color:$mb;
 				}
 			}
 		}
@@ -125,4 +131,40 @@ body{
 			}
 		}
 	}
+}
+.add-user{
+		display:flex;
+		padding-left:30px;
+		background-color:$w;
+		align-items:flex-start;
+		img{
+			width:40px;
+			margin-right:30px;
+		}
+		textarea{
+			flex-grow:1;
+			border:none;
+			resize:none;
+			outline:none;
+			margin-right:15px;
+			color:$db;
+			display:flex;
+			caret-color:$mb;
+			height:auto;
+			line-height:1.4;
+			padding:10px 20px;
+			border-radius:7px;
+			&:focus{
+				outline:1px solid $mb;
+			}
+		}
+		button{
+			@include reset-button;
+			background-color:$mb;
+			color:$w;
+			text-transform:uppercase;
+			padding:12px 30px;
+			font-weight:500;
+			border-radius:8px;
+		}
 }
