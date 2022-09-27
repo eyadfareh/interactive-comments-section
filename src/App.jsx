@@ -3,6 +3,7 @@ import './App.scss'
 import commentsData from './data.json'
 import Comments from './components/Comments.jsx'
 import AddComment from './components/AddComment.jsx'
+import Modal from './components/Modal.jsx'
 function getTarget(comments, action){
   var target
   var commentTarget = comments.find(comment => comment.id === action.commentID);
