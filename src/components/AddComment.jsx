@@ -22,6 +22,10 @@ export default function AddUser(props){
   }, [commentData])
   function formSubmitHandlar(e){
     e.preventDefault();
+    props.submitHandlar({
+      text:textareaRef.current.value,
+    });
+    textareaRef.current.value = "";
   } 
   function inputHandlar(e){
     setCommentData(e.target.value);
