@@ -1,8 +1,56 @@
-import { useState, useEffect} from 'react'
+import { useState, useEffect, useReducer} from 'react'
 import './App.scss'
 import commentsData from './data.json'
 import Comments from './components/Comments.jsx'
 import AddComment from './components/AddComment.jsx'
+function getTarget(comments, action){
+  var target
+  var commentTarget = comments.find(comment => comment.id === action.commentID);
+  if(action.commentType === "reply")
+    target = commentTarget.replies.find(reply => reply.id === action.replyID)
+  else
+    target = commentTarget
+      
+  return target;
+}
+function commentsReducer(prevState,action){
+  switch(action.type){
+    case 'ADD':
+      return [
+        ...prevState,
+        {
+          id:prevState[prevState.length - 1].id +1,
+          content:action.text,
+          createdAt:"Now",
+          score:0,
+          upvoteStatus:0,
+          user:commentsData.currentUser,
+          replies:[]
+        }]
+    case "UPVOTE":
+      var modState = [...prevState]
+      var target = getTarget(modState, action);
+      if(target.upvoteStatus === 1 ){
+        target.score -=1;
+        target.upvoteStatus = 0;
+      } else{
+        target.score += 1-target.upvoteStatus;
+        target.upvoteStatus = 1;
+      }
+      return modState;
+    case "DOWNVOTE":
+      var modState = [...prevState]
+      var target = getTarget(modState, action);
+      if(target.upvoteStatus === -1 ){
+        target.score += 1;
+        target.upvoteStatus = 0;
+      }else{
+        target.score -= target.upvoteStatus+1;
+        target.upvoteStatus = -1;
+      }
+      return modState;
+  }
+}
 function App() {
   // check webp support (a better way)
   var prevImageType = localStorage.getItem('imageType');
@@ -27,34 +75,19 @@ function App() {
     }
   }, []);
   // start the actual app
-  function commentHandlar(e){
-    console.log(e);
-    let post = comments.find(comment => comment.id === e.commentID);
-    console.log(post);
-    switch(e.type){
-      case "UPVOTE":
-        
-        break;
-    }
-  }
+  const [commentsState,dispatchComments] = useReducer(commentsReducer, commentsData.comments)
   const [comments, setComments] = useState(commentsData.comments);
   const [currentUser, setCurrentUser] = useState(commentsData.currentUser);
   function addCommentHandlar(e){
     console.log(e);
-    setComments((prevState) => [...prevState,
-      {
-        id:prevState[prevState.length - 1].id +1,
-        content:e.text,
-        createdAt:"Now",
-        score:0,
-        upvoteStatus:0,
-        user:currentUser,
-        replies:[]
-      }])
+    dispatchComments({
+      type:"ADD",
+      text:e.text
+    })
   }
   return (
     <div className="App">
-      <Comments comments={comments} commentHandlar={commentHandlar} currentUser={currentUser} imageType={imageType}></Comments>
+      <Comments comments={commentsState} commentHandlar={dispatchComments} currentUser={currentUser} imageType={imageType}></Comments>
       <AddComment submitHandlar={addCommentHandlar} currentUser={currentUser} imageType={imageType}/>
     </div>
   )

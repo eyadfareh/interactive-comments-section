@@ -7,6 +7,14 @@ export default function Comment(props){
       replyID:props.replyID ? props.replyID : null 
     });
   }
+  function downvoteHandlar(e){
+    props.commentHandlar({
+      type:"DOWNVOTE",
+      commentType:props.commentType,
+      commentID:props.commentID,
+      replyID:props.replyID ? props.replyID : null 
+    })
+  }
   let commentBody = (
       <div className="comment">
         <div className="upvotes">
@@ -15,7 +23,7 @@ export default function Comment(props){
               <img src="/images/icon-plus.svg" alt="Upvote button" />
             </button>
             <span>{props.score}</span>
-            <button>
+            <button onClick={downvoteHandlar}>
               <img src="/images/icon-minus.svg" alt="Downvote button" />
             </button>
           </div>
