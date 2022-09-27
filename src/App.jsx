@@ -29,6 +29,13 @@ function App() {
   // start the actual app
   function commentHandlar(e){
     console.log(e);
+    let post = comments.find(comment => comment.id === e.commentID);
+    console.log(post);
+    switch(e.type){
+      case "UPVOTE":
+        
+        break;
+    }
   }
   const [comments, setComments] = useState(commentsData.comments);
   const [currentUser, setCurrentUser] = useState(commentsData.currentUser);
