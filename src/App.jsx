@@ -27,6 +27,9 @@ function App() {
     }
   }, []);
   // start the actual app
+  function commentHandlar(e){
+    console.log(e);
+  }
   const [comments, setComments] = useState(commentsData.comments);
   const [currentUser, setCurrentUser] = useState(commentsData.currentUser);
   function addCommentHandlar(e){
@@ -37,13 +40,14 @@ function App() {
         content:e.text,
         createdAt:"Now",
         score:0,
+        upvoteStatus:0,
         user:currentUser,
         replies:[]
       }])
   }
   return (
     <div className="App">
-      <Comments comments={comments} currentUser={currentUser} imageType={imageType}></Comments>
+      <Comments comments={comments} commentHandlar={commentHandlar} currentUser={currentUser} imageType={imageType}></Comments>
       <AddComment submitHandlar={addCommentHandlar} currentUser={currentUser} imageType={imageType}/>
     </div>
   )

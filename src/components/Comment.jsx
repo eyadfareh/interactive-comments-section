@@ -1,9 +1,17 @@
 export default function Comment(props){
+  function upvoteHandlar(e){
+    props.commentHandlar({
+      type:"UPVOTE",
+      commentType:props.commentType,
+      commentID:props.commentID,
+      replyID:props.replyID ? props.replyID : null 
+    });
+  }
   let commentBody = (
       <div className="comment">
         <div className="upvotes">
           <div>
-            <button>
+            <button onClick={upvoteHandlar}>
               <img src="/images/icon-plus.svg" alt="Upvote button" />
             </button>
             <span>{props.score}</span>

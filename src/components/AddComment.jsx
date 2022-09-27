@@ -7,7 +7,6 @@ export default function AddUser(props){
     setLastScrollHeight(textareaRef.current.scrollHeight);
   },[]);
   useEffect(() => {
-    console.log("Hello");
     var textarea = textareaRef.current
     var rows = parseInt(textarea.getAttribute("rows"));
     textarea.setAttribute("rows", "1");
