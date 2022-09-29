@@ -88,7 +88,7 @@ function App() {
   }
   return (
     <div className="App">
-      <Dialog></Dialog>
+      <Dialog hidden={true}></Dialog>
       <Comments comments={commentsState} commentHandlar={dispatchComments} currentUser={currentUser} imageType={imageType}></Comments>
       <AddComment submitHandlar={addCommentHandlar} currentUser={currentUser} imageType={imageType}/>
     </div>

@@ -191,6 +191,7 @@ body{
 		background-color: #fff;
 		width: 400px;
 		height: 254px;
+		border-radius: 10px;
 		padding: 33px;
 		.dialog-header{
 			color:$db;
@@ -213,7 +214,7 @@ body{
 				border-radius: 10px;
 				text-transform: uppercase;
 				&.cancel{
-					margin-right:10px;
+					margin-right:15px;
 					background-color: $gb;
 					color: $w;
 				}

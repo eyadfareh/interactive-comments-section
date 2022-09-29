@@ -17,5 +17,8 @@ export default function Dialog(props){
       </div>
     </>
   );
-  return ReactDOM.createPortal(dialogContent, document.getElementById("dialog-container"))
+  if(props.hidden)
+    return <></>;
+  else
+    return ReactDOM.createPortal(dialogContent, document.getElementById("dialog-container"))
 }
