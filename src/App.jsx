@@ -50,6 +50,16 @@ function commentsReducer(prevState,action){
         target.upvoteStatus = -1;
       }
       return modState;
+    case 'DELETE':
+      if(action.commentType === "comment"){
+        var newArray = prevState.filter(comment => comment.id != action.commentID)
+      }else{
+        var newArray = [...prevState]
+        var commentTarget = newArray.find(comment => comment.id === action.commentID);
+        var repliesMod = commentTarget.replies.filter(reply => reply.id != action.replyID);
+        commentTarget.replies = repliesMod;
+      }
+      return newArray
   }
 }
 function App() {
@@ -79,6 +89,7 @@ function App() {
   const [commentsState,dispatchComments] = useReducer(commentsReducer, commentsData.comments)
   const [comments, setComments] = useState(commentsData.comments);
   const [currentUser, setCurrentUser] = useState(commentsData.currentUser);
+  const [deletedComment, setDeletedComment] = useState(false);
   function addCommentHandlar(e){
     console.log(e);
     dispatchComments({
@@ -86,10 +97,13 @@ function App() {
       text:e.text
     })
   }
+  function commentDeleteHandlar(e){
+    setDeletedComment(e);
+  }
   return (
     <div className="App">
-      <Dialog hidden={true}></Dialog>
-      <Comments comments={commentsState} commentHandlar={dispatchComments} currentUser={currentUser} imageType={imageType}></Comments>
+      <Dialog dispatchComments={dispatchComments} deletedComment={deletedComment} deleteHandlar={commentDeleteHandlar}></Dialog>
+      <Comments deleteHandlar={commentDeleteHandlar} comments={commentsState} commentHandlar={dispatchComments} currentUser={currentUser} imageType={imageType}></Comments>
       <AddComment submitHandlar={addCommentHandlar} currentUser={currentUser} imageType={imageType}/>
     </div>
   )

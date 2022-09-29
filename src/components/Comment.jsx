@@ -15,6 +15,13 @@ export default function Comment(props){
       replyID:props.replyID ? props.replyID : null 
     })
   }
+  function deleteHandlar(e){
+    props.deleteHandlar({
+      commentType:props.commentType,
+      commentID:props.commentID,
+      replyID:props.replyID ? props.replyID : null 
+    })
+  }
   let commentBody = (
       <div className="comment">
         <div className="upvotes">
@@ -41,7 +48,7 @@ export default function Comment(props){
             <div>
               {props.currentUser ? (
                 <>
-                  <button className="delete">
+                  <button onClick={deleteHandlar} className="delete">
                     <img src="/images/icon-delete.svg" width="15" alt="Reply icon" />
                     Delete
                   </button>

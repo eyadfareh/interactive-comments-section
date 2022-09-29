@@ -13,6 +13,7 @@ export default function Comments(props){
           imageType={props.imageType}
           currentUser={comment.user.username === props.currentUser.username}
           image={comment.user.image}
+          deleteHandlar={props.deleteHandlar}
           commentHandlar={props.commentHandlar}
           content={comment.content}
           commentType="comment"
@@ -29,6 +30,7 @@ export default function Comments(props){
               upvoteStatus={reply.upvoteStatus}
               imageType={props.imageType}
               commentHandlar={props.commentHandlar}
+              deleteHandlar={props.deleteHandlar}
               replyingTo={reply.replyingTo}
               currentUser={reply.user.username === props.currentUser.username}
               image={reply.user.image}
