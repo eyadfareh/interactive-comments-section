@@ -30,7 +30,7 @@ export default function AddUser(props){
     setCommentData(e.target.value);
   }
   return (
-    <form className="add-user" onSubmit={formSubmitHandlar} action="">
+    <form className="add-comment" onSubmit={formSubmitHandlar} action="">
       <img width="40" src={props.currentUser.image[props.imageType]} alt="your profile picture" />
       <textarea
         type="text"

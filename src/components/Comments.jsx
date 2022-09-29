@@ -11,9 +11,11 @@ export default function Comments(props){
           score={comment.score}
           upvoteStatus={comment.upvoteStatus}
           imageType={props.imageType}
-          currentUser={comment.user.username === props.currentUser.username}
+          isCurrentUser={comment.user.username === props.currentUser.username}
+          currentUser={props.currentUser}
           image={comment.user.image}
           deleteHandlar={props.deleteHandlar}
+          addCommentHandlar={props.addCommentHandlar}
           commentHandlar={props.commentHandlar}
           content={comment.content}
           commentType="comment"
@@ -28,11 +30,13 @@ export default function Comments(props){
               createdAt={reply.createdAt}
               score={reply.score}
               upvoteStatus={reply.upvoteStatus}
+              addCommentHandlar={props.addCommentHandlar}
               imageType={props.imageType}
               commentHandlar={props.commentHandlar}
               deleteHandlar={props.deleteHandlar}
               replyingTo={reply.replyingTo}
-              currentUser={reply.user.username === props.currentUser.username}
+              currentUser={props.currentUser}
+              isCurrentUser={reply.user.username === props.currentUser.username}
               image={reply.user.image}
               content={reply.content}
             ></Comment>

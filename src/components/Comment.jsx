@@ -1,4 +1,7 @@
+import { useState } from "react";
+import AddComment from "./AddComment"
 export default function Comment(props){
+  const [addCommentOpened, setAddCommentOpened] = useState(false)
   function upvoteHandlar(e){
     props.commentHandlar({
       type:"UPVOTE",
@@ -22,6 +25,12 @@ export default function Comment(props){
       replyID:props.replyID ? props.replyID : null 
     })
   }
+  function replyHandlar(e){
+    setAddCommentOpened(prevState => {
+      console.log(prevState)
+      return !prevState;
+    })
+  }
   let commentBody = (
       <div className="comment">
         <div className="upvotes">
@@ -40,13 +49,13 @@ export default function Comment(props){
             <div>
               <img src={props.image[props.imageType]} width="30" alt="Max Blagun" />
               <span className="username">{props.username}</span>
-              {props.currentUser ? (
+              {props.isCurrentUser ? (
                 <span className="you">you</span>
               ):""}
               <span className="date">{props.createdAt}</span>
             </div>
             <div>
-              {props.currentUser ? (
+              {props.isCurrentUser ? (
                 <>
                   <button onClick={deleteHandlar} className="delete">
                     <img src="/images/icon-delete.svg" width="15" alt="Reply icon" />
@@ -58,7 +67,7 @@ export default function Comment(props){
                   </button>
                 </>
               ) : (
-                <button>
+                <button onClick={replyHandlar}>
                   <img src="/images/icon-reply.svg" width="15" alt="Reply icon" />
                   Reply
                 </button>
@@ -80,16 +89,17 @@ export default function Comment(props){
     return (
       <div className="comment-container"> 
         {commentBody}
-        {props.children.length ? (
           <div className="replies-container">
             <div className="line-container">
               <div className="line"></div>
             </div>
             <div className="replies">
+              {addCommentOpened ? (
+                <AddComment submitHandlar={props.addCommentHandlar} currentUser={props.currentUser} imageType={props.imageType} />
+              ):""}
               {props.children}
             </div>
           </div>
-        ) : ""}
       </div>
     )
   }else if(props.commentType == "reply"){

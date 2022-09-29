@@ -103,8 +103,10 @@ function App() {
   return (
     <div className="App">
       <Dialog dispatchComments={dispatchComments} deletedComment={deletedComment} deleteHandlar={commentDeleteHandlar}></Dialog>
-      <Comments deleteHandlar={commentDeleteHandlar} comments={commentsState} commentHandlar={dispatchComments} currentUser={currentUser} imageType={imageType}></Comments>
-      <AddComment submitHandlar={addCommentHandlar} currentUser={currentUser} imageType={imageType}/>
+      <Comments addCommentHandlar={addCommentHandlar} deleteHandlar={commentDeleteHandlar} comments={commentsState} commentHandlar={dispatchComments} currentUser={currentUser} imageType={imageType}></Comments>
+      <div className='add-comment-container'>
+        <AddComment submitHandlar={addCommentHandlar} currentUser={currentUser} imageType={imageType}/>
+      </div>
     </div>
   )
 }
