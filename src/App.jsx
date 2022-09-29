@@ -3,7 +3,7 @@ import './App.scss'
 import commentsData from './data.json'
 import Comments from './components/Comments.jsx'
 import AddComment from './components/AddComment.jsx'
-import Modal from './components/Modal.jsx'
+import Dialog from './components/Dialog.jsx'
 function getTarget(comments, action){
   var target
   var commentTarget = comments.find(comment => comment.id === action.commentID);
@@ -88,6 +88,7 @@ function App() {
   }
   return (
     <div className="App">
+      <Dialog></Dialog>
       <Comments comments={commentsState} commentHandlar={dispatchComments} currentUser={currentUser} imageType={imageType}></Comments>
       <AddComment submitHandlar={addCommentHandlar} currentUser={currentUser} imageType={imageType}/>
     </div>
